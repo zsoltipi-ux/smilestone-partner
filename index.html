@@ -231,7 +231,7 @@ footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wra
 
   <h3 style="margin-bottom:6px">Jutalék labortípusonként</h3>
   <table class="pricing-table">
-    <thead><tr><th>Labortípus</th><th>Labor havi előfizetése</th><th>Bevezetési díjad (per labor)</th><th>Havi jutalékod (20%)</th></tr></thead>
+    <thead><tr><th>Labortípus</th><th>Labor havi előfizetése</th><th>Bevezétesi díjad (per labor)</th><th>Havi jutalékod (20%)</th></tr></thead>
     <tbody>
       <tr><td>Kis labor (~75 eset/hó)</td><td>~25 000 Ft</td><td class="projected">~100 000 – 200 000 Ft *</td><td>~5 000 Ft</td></tr>
       <tr><td>Közepes labor (~150 eset/hó)</td><td>~47 500 Ft</td><td class="projected">~150 000 – 300 000 Ft *</td><td>~9 500 Ft</td></tr>
@@ -242,41 +242,47 @@ footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wra
 
   <!-- Scenario A: Flat -->
   <div class="scenario-box">
-    <h4>6 közepes labor az első évben</h4>
-    <p class="scenario-sub">2 havonta egy új labor bevezetése, állandó esetszámmal számolva</p>
+    <h4>2 havonta egy új labor bevezetése — állandó esetszámmal</h4>
+    <p class="scenario-sub">Folyamatos toborzás, 6 labor/év ütemben. Az első labor reálisan a 2. hónapban indul. Bevezetési díj: ~225 000 Ft/labor.</p>
 
     <table class="pricing-table" style="margin:12px 0">
       <thead><tr><th></th><th>1. év végére</th><th>3. év végére</th><th>5. év végére</th></tr></thead>
       <tbody>
-        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 750 000 Ft</td><td>~3 120 000 Ft</td><td>~4 490 000 Ft</td></tr>
+        <tr><td>Laborok száma</td><td>6</td><td>18</td><td>30</td></tr>
+        <tr><td>Bevezetési díj összesen</td><td>~1 350 000 Ft</td><td>~4 050 000 Ft</td><td>~6 750 000 Ft</td></tr>
+        <tr><td>Jutalék összesen</td><td>~285 000 Ft</td><td>~2 907 000 Ft</td><td>~8 265 000 Ft</td></tr>
+        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 635 000 Ft</td><td>~6 957 000 Ft</td><td>~15 015 000 Ft</td></tr>
       </tbody>
     </table>
-    <p class="disclaimer">Ebből az 1. évben ~1 350 000 Ft bevezetési díj + ~400 000 Ft jutalék. A 2–5. évben évi ~684 000 Ft visszatérő jutalék, ameddig a laborok aktív előfizetők.</p>
+    <p class="disclaimer">Az 1. évben a bevezetési díjak teszik ki a bevétel nagy részét. Ahogy nő a laborok száma, a havi visszatérő jutalék egyre dominánsabb lesz — az 5. évre a jutalék már a bevétel 55%-a.</p>
   </div>
 
   <!-- Scenario B: 20% growth -->
   <div class="scenario-box">
-    <h4>6 közepes labor — évi 20% esetszám-növekedéssel <span class="growth-badge">+20%/év</span></h4>
+    <h4>Ugyanez — évi 20% esetszám-növekedéssel <span class="growth-badge">+20%/év</span></h4>
     <p class="scenario-sub">SmileStone tapasztalat: a rendszert használó laborok átlagosan évi ~20%-kal növelik esetszámukat. A magasabb esetszám magasabb előfizetést és ezzel magasabb jutalékot jelent neked.</p>
 
     <table class="pricing-table" style="margin:12px 0">
       <thead><tr><th></th><th>1. év végére</th><th>3. év végére</th><th>5. év végére</th></tr></thead>
       <tbody>
-        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 750 000 Ft</td><td>~3 560 000 Ft</td><td>~6 160 000 Ft</td></tr>
+        <tr><td>Laborok száma</td><td>6</td><td>18</td><td>30</td></tr>
+        <tr><td>Bevezetési díj összesen</td><td>~1 350 000 Ft</td><td>~4 050 000 Ft</td><td>~6 750 000 Ft</td></tr>
+        <tr><td>Jutalék összesen</td><td>~299 000 Ft</td><td>~3 472 000 Ft</td><td>~11 318 000 Ft</td></tr>
+        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 649 000 Ft</td><td>~7 522 000 Ft</td><td>~18 068 000 Ft</td></tr>
       </tbody>
     </table>
-    <p class="disclaimer">Az 1. év azonos, utána a jutalék évről évre nő a labor növekvő esetszámával. Az 5. évre a havi jutalékod laboronként már ~19 700 Ft a kiinduló ~9 500 Ft helyett.</p>
+    <p class="disclaimer">Az 1. év közel azonos. Ahogy a laborok növekednek, az 5. évre a havi jutalékod a legrégebbi laboroknál már ~19 700 Ft a kiinduló ~9 500 Ft helyett — és 30 labor hozza párhuzamosan.</p>
   </div>
 
   <!-- Visual summary -->
-  <h3 style="margin:28px 0 12px">Összesített bevétel áttekintés (6 közepes labor)</h3>
+  <h3 style="margin:28px 0 12px">Összesített bevétel áttekintés (2 havonta 1 új közepes labor)</h3>
   <div class="revenue-grid">
-    <div class="revenue-card"><div class="period">1. év</div><div class="amount">~1,75M Ft</div><div class="detail">bevezetési díjak + jutalék</div></div>
-    <div class="revenue-card"><div class="period">3. év összesen</div><div class="amount">~3,1–3,6M Ft</div><div class="detail">növekedéstől függően</div></div>
-    <div class="revenue-card big"><div class="period">5. év összesen</div><div class="amount">~4,5–6,2M Ft</div><div class="detail">növekedéstől függően</div></div>
+    <div class="revenue-card"><div class="period">1. év</div><div class="amount">~1,6M Ft</div><div class="detail">6 labor, főleg bevezetési díj</div></div>
+    <div class="revenue-card"><div class="period">3. év összesen</div><div class="amount">~7,0–7,5M Ft</div><div class="detail">18 labor, növekedéstől függően</div></div>
+    <div class="revenue-card big"><div class="period">5. év összesen</div><div class="amount">~15–18M Ft</div><div class="detail">30 labor, növekedéstől függően</div></div>
   </div>
 
-  <p class="disclaimer" style="margin-top:20px">A fenti számítás 6 közepes laborral számol, 2 havonkénti bevezetési ütemmel. A valós bevétel ettől eltérhet a laborméret, a régió és az egyéni teljesítmény alapján. A bevezetési díj előirányzott, a végleges összeget személyesen egyeztetjük.</p>
+  <p class="disclaimer" style="margin-top:20px">A fenti számítás folyamatos toborzást feltételez (2 havonta 1 új közepes labor, ~150 eset/hó). A valós bevétel eltérhet a laborméret, a régió és az egyéni teljesítmény alapján. A bevezetési díj előirányzott, a végleges összeget személyesen egyeztetjük.</p>
 </div>
 </section>
 
@@ -563,6 +569,9 @@ document.getElementById('partnerForm').addEventListener('submit',function(e){
   const s=document.getElementById('successScreen');
   s.style.display='block';
   document.getElementById('successName').textContent='Köszi, '+d.name+'!';
+  // Background: send to API for AI analysis + email notification
+  const API_URL='https://smilestone-partner-api.vercel.app/api/partner-apply';
+  fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(r=>{if(!r.ok)console.error('API error:',r.status)}).catch(err=>console.error('API call failed:',err));
 });
 document.querySelectorAll('input,textarea,select').forEach(el=>{
   el.addEventListener('input',()=>{

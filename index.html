@@ -24,10 +24,14 @@ a:hover{text-decoration:underline}
 .site-header .container{display:flex;align-items:center;justify-content:space-between}
 .site-header img{height:32px}
 .header-links{display:flex;gap:16px;font-size:13px;align-items:center}
-.header-links a{color:var(--gray)}
+.header-links a{color:var(--gray);display:inline-flex;align-items:center;gap:5px}
+.header-links a img.nav-icon{height:14px;width:14px;object-fit:contain;border-radius:2px;flex-shrink:0}
+.header-links .apply-link{background:var(--blue);color:#fff!important;padding:5px 12px;border-radius:6px;font-weight:600;gap:4px}
+.header-links .apply-link:hover{opacity:.88;text-decoration:none}
 .lang-switcher{display:flex;gap:4px;padding-left:8px;border-left:1px solid var(--border)}
-.lang-btn{background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;padding:0 6px;font-weight:500;transition:all .2s}
-.lang-btn.lang-active{color:var(--dark);font-weight:700}
+.lang-btn{background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;padding:2px 7px;font-weight:500;transition:all .2s;display:inline-flex;align-items:center;gap:4px;border-radius:4px}
+.lang-btn.lang-active{color:var(--dark);font-weight:700;background:var(--light)}
+.lang-btn .flag{font-size:14px;line-height:1}
 
 .hero{padding:80px 0 60px;text-align:center;background:#fff}
 .hero h1{font-size:34px;font-weight:800;line-height:1.2;margin-bottom:16px;color:var(--dark)}
@@ -162,12 +166,12 @@ footer .footer-tagline{font-size:12px;letter-spacing:.5px;text-transform:upperca
 <div class="container">
   <a href="https://smilestone.hu" target="_blank"><img src="https://smilestone.hu/assets/img/logo-all.png" alt="SmileStone"></a>
   <div class="header-links">
-    <a href="https://smilestone.hu" target="_blank" data-i18n="header-site">smilestone.hu</a>
-    <a href="#apply" data-i18n="header-apply">Apply</a>
+    <a href="https://smilestone.hu" target="_blank"><img src="https://smilestone.hu/favicon.ico" alt="" class="nav-icon"><span data-i18n="header-site">smilestone.hu</span></a>
+    <a href="#apply" class="apply-link"><span>✦</span><span data-i18n="header-apply">Apply</span></a>
     <div class="lang-switcher">
-      <button class="lang-btn lang-active" id="langEnBtn" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn lang-active" id="langEnBtn" onclick="setLanguage('en')"><span class="flag">🇬🇧</span> EN</button>
       <span style="color:var(--border)">|</span>
-      <button class="lang-btn" id="langHuBtn" onclick="setLanguage('hu')">HU</button>
+      <button class="lang-btn" id="langHuBtn" onclick="setLanguage('hu')"><span class="flag">🇭🇺</span> HU</button>
     </div>
   </div>
 </div>

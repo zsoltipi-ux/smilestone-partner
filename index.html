@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,11 @@ a:hover{text-decoration:underline}
 .site-header{background:#fff;border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:38px;z-index:99}
 .site-header .container{display:flex;align-items:center;justify-content:space-between}
 .site-header img{height:32px}
-.header-links{display:flex;gap:16px;font-size:13px}
+.header-links{display:flex;gap:16px;font-size:13px;align-items:center}
 .header-links a{color:var(--gray)}
+.lang-switcher{display:flex;gap:4px;padding-left:8px;border-left:1px solid var(--border)}
+.lang-btn{background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;padding:0 6px;font-weight:500;transition:all .2s}
+.lang-btn.lang-active{color:var(--dark);font-weight:700}
 
 .hero{padding:80px 0 60px;text-align:center;background:#fff}
 .hero h1{font-size:34px;font-weight:800;line-height:1.2;margin-bottom:16px;color:var(--dark)}
@@ -132,10 +135,14 @@ textarea{resize:vertical}
 .success-screen h3{font-size:22px;margin-bottom:8px}
 .success-screen p{color:var(--gray);margin-bottom:8px}
 
-footer{background:var(--dark);color:#9CA3AF;padding:36px 0;text-align:center;font-size:13px}
-footer img{height:24px;margin-bottom:10px;filter:brightness(0) invert(1)}
-footer a{color:#9CA3AF}
-footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wrap:wrap}
+footer{background:var(--dark);color:#9CA3AF;padding:40px 0 32px;text-align:center;font-size:13px;border-top:3px solid var(--blue)}
+footer img{height:26px;margin-bottom:12px;filter:brightness(0) invert(1)}
+footer a{color:#9CA3AF;transition:color .2s}
+footer a:hover{color:#fff;text-decoration:none}
+footer .links{display:flex;justify-content:center;gap:16px;margin:10px 0 14px;flex-wrap:wrap}
+footer .links span{opacity:.4}
+footer .footer-divider{width:40px;height:1px;background:rgba(255,255,255,.12);margin:14px auto}
+footer .footer-tagline{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#6B7280;margin-bottom:4px}
 
 .floating-cta{position:fixed;bottom:24px;right:24px;z-index:90;display:none}
 .floating-cta .cta-btn{box-shadow:0 4px 20px rgba(0,186,239,.4);padding:12px 24px;font-size:14px}
@@ -145,15 +152,20 @@ footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wra
 <body>
 
 <!-- Beta Banner -->
-<div class="beta-banner">🚧 Ez az oldal béta verzió. A végleges partneri feltételeket személyesen egyeztetjük.</div>
+<div class="beta-banner" data-i18n="beta-banner">🚧 This page is a beta version. Final partner terms will be discussed personally.</div>
 
 <!-- Header -->
 <header class="site-header">
 <div class="container">
   <a href="https://smilestone.hu" target="_blank"><img src="https://smilestone.hu/assets/img/logo-all.png" alt="SmileStone"></a>
   <div class="header-links">
-    <a href="https://smilestone.hu" target="_blank">smilestone.hu</a>
-    <a href="#jelentkezes">Jelentkezés</a>
+    <a href="https://smilestone.hu" target="_blank" data-i18n="header-site">smilestone.hu</a>
+    <a href="#apply" data-i18n="header-apply">Apply</a>
+    <div class="lang-switcher">
+      <button class="lang-btn lang-active" id="langEnBtn" onclick="setLanguage('en')">EN</button>
+      <span style="color:var(--border)">|</span>
+      <button class="lang-btn" id="langHuBtn" onclick="setLanguage('hu')">HU</button>
+    </div>
   </div>
 </div>
 </header>
@@ -161,354 +173,326 @@ footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wra
 <!-- Hero -->
 <section class="hero" id="hero">
 <div class="container">
-  <h1>Partneri együttműködés<br>fogtechnikai ERP bevezetésre</h1>
-  <p class="subtitle">A SmileStone egy fogtechnikai laboroknak készült ERP rendszer. Olyan partnereket és ERP bevezető cégeket keresünk, akik a saját régiójukban bevezetik a rendszert laboroknál — és részesednek a bevételből.</p>
-  <a href="#hogyan" class="cta-btn">Hogyan működik? ↓</a>
-  <p class="small">5 perc olvasás · Nem kötelező</p>
+  <h1 data-i18n-html="hero-h1">Partner Program<br>for Dental Lab ERP Implementation</h1>
+  <p class="subtitle" data-i18n="hero-subtitle">SmileStone is an ERP system built for dental labs. We're looking for partners and ERP implementation companies who can deploy the system in their region — and share in the revenue.</p>
+  <a href="#how" class="cta-btn" data-i18n="hero-cta">How does it work? ↓</a>
+  <p class="small" data-i18n="hero-small">5 minutes to read · No commitment</p>
   <div class="stats">
-    <div class="stat"><div class="num">2600+</div><div class="label">aktív felhasználó</div></div>
-    <div class="stat"><div class="num">20%</div><div class="label">visszatérő havi jutalék</div></div>
-    <div class="stat"><div class="num">2017 óta</div><div class="label">éles üzem</div></div>
+    <div class="stat"><div class="num">2600+</div><div class="label" data-i18n="stat-users">active users</div></div>
+    <div class="stat"><div class="num">20%</div><div class="label" data-i18n="stat-commission">recurring monthly commission</div></div>
+    <div class="stat"><div class="num">Since 2017</div><div class="label" data-i18n="stat-operation">live operation</div></div>
   </div>
 </div>
 </section>
 
-<!-- Rövid bemutató -->
-<section class="section-light" id="mi-az">
+<!-- What does SmileStone do? -->
+<section class="section-light" id="what">
 <div class="container">
-  <h2>Mit csinál a SmileStone?</h2>
-  <p class="section-title-sub">Fogtechnikai laborok teljes működésének digitalizálása — megrendelés, gyártáskövetés, számlázás, kimutatások. A fogorvosok ingyen használják a rendszert; a laborok fizetnek előfizetést az esetszámuk alapján.</p>
+  <h2 data-i18n="what-title">What Does SmileStone Do?</h2>
+  <p class="section-title-sub" data-i18n="what-subtitle">Complete digitalization of dental lab operations — orders, production tracking, invoicing, and analytics. Dentists use the system for free; labs pay a subscription based on case volume.</p>
   <div class="features">
-    <div class="feature-card"><div class="icon">📋</div><h3>Digitális megrendelés</h3><p>A fogorvos online rendel, a labor azonnal látja a feladatot. Nincs papír, nincs félreértés.</p></div>
-    <div class="feature-card"><div class="icon">📅</div><h3>Gyártáskövetés</h3><p>Minden munka nyomon követhető: ki csinálja, hol tart, mikorra kész. QR-kóddal is.</p></div>
-    <div class="feature-card"><div class="icon">💰</div><h3>Számlázás & elszámolás</h3><p>Automatikus számlák, egyedi árlisták. NAV-kompatibilis e-számlázás.</p></div>
-    <div class="feature-card"><div class="icon">📊</div><h3>Üzleti áttekintés</h3><p>Forgalom, kintlévőség, csapat teljesítmény — valós időben, egy dashboardon.</p></div>
+    <div class="feature-card"><div class="icon">📋</div><h3 data-i18n="feature1-title">Digital Orders</h3><p data-i18n="feature1-desc">Dentists order online, labs see the job instantly. No paper, no misunderstandings.</p></div>
+    <div class="feature-card"><div class="icon">📅</div><h3 data-i18n="feature2-title">Production Tracking</h3><p data-i18n="feature2-desc">Every job is tracked: who's working on it, where it's at, when it's due. QR codes included.</p></div>
+    <div class="feature-card"><div class="icon">💰</div><h3 data-i18n="feature3-title">Billing & Accounting</h3><p data-i18n="feature3-desc">Automatic invoices, custom price lists. Tax-compliant e-invoicing.</p></div>
+    <div class="feature-card"><div class="icon">📊</div><h3 data-i18n="feature4-title">Business Insights</h3><p data-i18n="feature4-desc">Revenue, receivables, team performance — real-time, in one dashboard.</p></div>
   </div>
-  <p class="trust-line">2600+ felhasználó · 100 000+ feldolgozott eset · Globális SaaS, helyi support</p>
+  <p class="trust-line" data-i18n="trust-line">2600+ users · 100,000+ cases processed · Global SaaS, local support</p>
 </div>
 </section>
 
-<!-- Hogyan működik a partnerség? -->
-<section class="section-gray" id="hogyan">
+<!-- How does the partnership work? -->
+<section class="section-gray" id="how">
 <div class="container">
-  <h2>Hogyan működik a partnerség?</h2>
-  <p class="section-title-sub">Egyszerű modell, átlátható feltételek. Te értékesítesz és bevezeted a rendszert — mi adjuk a technikai hátteret, marketing anyagokat, és a bejövő leadeket is átadjuk.</p>
+  <h2 data-i18n="how-title">How Does the Partnership Work?</h2>
+  <p class="section-title-sub" data-i18n="how-subtitle">Simple model, transparent terms. You sell and implement the system — we provide the tech backend, marketing materials, and pass along leads from your region.</p>
   <div class="steps">
-    <div class="step"><div class="step-num">1</div><h3>Megtalálod a labort</h3><p>A saját kapcsolataidon és hálózatodon keresztül. Mi ezen felül az adott régiódban felmerülő, proaktív érdeklődésű leadeket is átadjuk neked.</p></div>
-    <div class="step"><div class="step-num">2</div><h3>Bevezeted a rendszert</h3><p>Te vagy a labor kontaktja az onboarding alatt. Mi konfiguráljuk a rendszert és tartjuk a technikai képzést — te kíséred végig a labort.</p></div>
-    <div class="step"><div class="step-num">3</div><h3>Részesülsz a bevételből</h3><p>Egyszeri bevezetési díj laboronként + a labor havi előfizetésének 20%-a, ameddig aktív ügyfél marad.</p></div>
+    <div class="step"><div class="step-num">1</div><h3 data-i18n="step1-title">Find a Lab</h3><p data-i18n="step1-desc">Through your own network and connections. We also pass along leads that come in from your region directly to you.</p></div>
+    <div class="step"><div class="step-num">2</div><h3 data-i18n="step2-title">Implement the System</h3><p data-i18n="step2-desc">You are the lab's main contact during onboarding. We handle configuration and technical training — you guide the lab through the process.</p></div>
+    <div class="step"><div class="step-num">3</div><h3 data-i18n="step3-title">Earn from Revenue</h3><p data-i18n="step3-desc">One-time implementation fee per lab + 20% of the lab's monthly subscription, as long as they remain an active customer.</p></div>
   </div>
-  <div class="highlight-box">Te vagy a SmileStone arca a labor felé, a saját régiódban. Az értékesítés a te dolgod — a technikai hátteret, a marketing anyagokat mi adjuk, és a bejövő leadeket is átirányítjuk hozzád.</div>
+</section>
+
+<!-- Who are we looking for? -->
+<section class="section-light">
+<div class="container">
+  <h2 data-i18n="looking-title">Who Are We Looking For?</h2>
+  <p class="section-title-sub" data-i18n="looking-subtitle">You don't need to be in the dental world — but you do need the right attitude. Here's who works best:</p>
+  <div class="features">
+    <div class="feature-card"><div class="icon">🎯</div><h3 data-i18n="looking1-title">Sales or Implementation</h3><p data-i18n="looking1-desc">You sell software, implement ERP, or run a consulting business with B2B experience.</p></div>
+    <div class="feature-card"><div class="icon">🤝</div><h3 data-i18n="looking2-title">Lab Connections</h3><p data-i18n="looking2-desc">You already know labs or know how to find them — through suppliers, dentist networks, or industry contacts.</p></div>
+    <div class="feature-card"><div class="icon">🌍</div><h3 data-i18n="looking3-title">Regional Focus</h3><p data-i18n="looking3-desc">You want to be the main contact for your region. We support, but you lead the market.</p></div>
+    <div class="feature-card"><div class="icon">⏱️</div><h3 data-i18n="looking4-title">Realistic Timeline</h3><p data-i18n="looking4-desc">Part-time partners work — full-time is better. We expect real effort after month one.</p></div>
+  </div>
 </div>
 </section>
 
-<!-- Kiben gondolkodunk? -->
-<section class="section-light" id="partner">
+<!-- Revenue section -->
+<section class="section-gray">
 <div class="container">
-  <h2>Kiben gondolkodunk?</h2>
-  <div class="prose" style="margin-top:20px">
-    <p>ERP bevezetéssel foglalkozó szakembereket és cégeket keresünk, akik a fogászati szektorban dolgoznak vagy szeretnének belépni. Az ügyfeleink fogtechnikai laborok — a mérettől és régiótól függetlenül, az egyéni vállalkozástól a 20+ fős laborig.</p>
-    <p>A legfontosabb, hogy legyen türelmed végigkísérni egy labort a bevezetésen, elmagyarázni hogyan működik a rendszer, és ott lenni ha kérdés van. Az értékesítési oldalon is számítunk rád, de nem kell egyedül csinálnod: adunk anyagokat, demo rendszert, és az adott régiódba érkező leadeket is átadjuk.</p>
-    <p>Ami nem működik: ha fix havi fizetést keresel (ez jutalékalapú), vagy ha nincs időd foglalkozni vele. Ez nem passzív bevétel — az elején aktívan kell építeni. Cserébe a havi jutalék évekig jön minden aktív laborod után.</p>
-  </div>
-</div>
-</section>
-
-<!-- Bevételi kilátások -->
-<section class="section-gray" id="kereset">
-<div class="container">
-  <h2>Milyen bevételre számíthatsz?</h2>
+  <h2 data-i18n="revenue-title">What Can You Expect to Earn?</h2>
+  <p class="section-title-sub" data-i18n="revenue-subtitle">Commission structure is simple. Here's what it looks like:</p>
 
   <div class="pricing-explainer">
-    <h4>A SmileStone előfizetési modell</h4>
+    <h4 data-i18n="revenue-how-h4">How It Works</h4>
     <ul>
-      <li>Havi alap: 25 000 Ft (~€70) — tartalmazza az első 75 esetet</li>
-      <li>76–200. eset: +300 Ft (~€1) / eset</li>
-      <li>200+ eset: +200 Ft (~€0,66) / eset</li>
+      <li data-i18n="revenue-how-li1">One-time implementation fee: you set the price, you invoice the lab directly</li>
+      <li data-i18n="revenue-how-li2">Recurring commission: 20% of the lab's monthly subscription (as long as they stay with us)</li>
+      <li data-i18n="revenue-how-li3">Premium modules, extra users, add-ons: all count toward commission</li>
+      <li data-i18n="revenue-how-li4">Payments settle monthly; we send a statement, you invoice, payment within 15 days</li>
     </ul>
-    <p class="note">A fogorvosoknak ingyenes. A labor fizeti az előfizetést az esetszáma alapján. A partneri jutalék ennek az előfizetésnek a 20%-a.</p>
+    <p class="note" data-i18n="revenue-how-note">Contract termination? You keep earning commission from customers you brought for 12 months after.</p>
   </div>
 
-  <h3 style="margin-bottom:6px">Jutalék labortípusonként</h3>
-  <table class="pricing-table">
-    <thead><tr><th>Labortípus</th><th>Labor havi előfizetése</th><th>Bevezetési díjad (per labor)</th><th>Havi jutalékod (20%)</th></tr></thead>
-    <tbody>
-      <tr><td>Kis labor (~75 eset/hó)</td><td>~25 000 Ft</td><td class="projected">~100 000 – 200 000 Ft *</td><td>~5 000 Ft</td></tr>
-      <tr><td>Közepes labor (~150 eset/hó)</td><td>~47 500 Ft</td><td class="projected">~150 000 – 300 000 Ft *</td><td>~9 500 Ft</td></tr>
-      <tr><td>Nagy labor (~300+ eset/hó)</td><td>~82 500 Ft</td><td class="projected">~200 000 – 500 000 Ft *</td><td>~16 500 Ft</td></tr>
-    </tbody>
-  </table>
-  <p class="disclaimer">* A bevezetési díj előirányzott — labormérattól és komplexitástól függ, személyesen egyeztetjük.</p>
+  <h3 data-i18n="revenue-scenarios">Example Scenarios</h3>
 
-  <!-- Scenario A: Flat -->
   <div class="scenario-box">
-    <h4>2 havonta egy új labor bevezetése — állandó esetszámmal</h4>
-    <p class="scenario-sub">Folyamatos toborzás, 6 labor/év ütemben. Az első labor reálisan a 2. hónapban indul. Bevezetési díj: ~225 000 Ft/labor.</p>
-
-    <table class="pricing-table" style="margin:12px 0">
-      <thead><tr><th></th><th>1. év végére</th><th>3. év végére</th><th>5. év végére</th></tr></thead>
-      <tbody>
-        <tr><td>Laborok száma</td><td>6</td><td>18</td><td>30</td></tr>
-        <tr><td>Bevezetési díj összesen</td><td>~1 350 000 Ft</td><td>~4 050 000 Ft</td><td>~6 750 000 Ft</td></tr>
-        <tr><td>Jutalék összesen</td><td>~285 000 Ft</td><td>~2 907 000 Ft</td><td>~8 265 000 Ft</td></tr>
-        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 635 000 Ft</td><td>~6 957 000 Ft</td><td>~15 015 000 Ft</td></tr>
-      </tbody>
-    </table>
-    <p class="disclaimer">Az 1. évben a bevezetési díjak teszik ki a bevétel nagy részét. Ahogy nő a laborok száma, a havi visszatérő jutalék egyre dominánsabb lesz — az 5. évre a jutalék már a bevétel 55%-a.</p>
+    <h4 data-i18n="scenario1-h4">Scenario 1: Small Start</h4>
+    <p class="scenario-sub" data-i18n="scenario1-sub">You bring 2 labs in your first 3 months (realistic).</p>
+    <div class="revenue-grid">
+      <div class="revenue-card"><div class="period" data-i18n="revenue-month">Month 1</div><div class="amount">€0</div><div class="detail" data-i18n="revenue-first-month">Just getting started</div></div>
+      <div class="revenue-card"><div class="period" data-i18n="revenue-month3">Month 3</div><div class="amount">€800</div><div class="detail" data-i18n="revenue-first-labs">2 labs × €400 implementation</div></div>
+      <div class="revenue-card big"><div class="period" data-i18n="revenue-recurring">Recurring (Month 4+)</div><div class="amount">€400/mo</div><div class="detail" data-i18n="revenue-recurring-detail">20% of 2 × €1,000/mo subscriptions</div></div>
+    </div>
   </div>
 
-  <!-- Scenario B: 20% growth -->
   <div class="scenario-box">
-    <h4>Ugyanez — évi 20% esetszám-növekedéssel <span class="growth-badge">+20%/év</span></h4>
-    <p class="scenario-sub">SmileStone tapasztalat: a rendszert használó laborok átlagosan évi ~20%-kal növelik esetszámukat. A magasabb esetszám magasabb előfizetést és ezzel magasabb jutalékot jelent neked.</p>
-
-    <table class="pricing-table" style="margin:12px 0">
-      <thead><tr><th></th><th>1. év végére</th><th>3. év végére</th><th>5. év végére</th></tr></thead>
-      <tbody>
-        <tr><td>Laborok száma</td><td>6</td><td>18</td><td>30</td></tr>
-        <tr><td>Bevezetési díj összesen</td><td>~1 350 000 Ft</td><td>~4 050 000 Ft</td><td>~6 750 000 Ft</td></tr>
-        <tr><td>Jutalék összesen</td><td>~299 000 Ft</td><td>~3 472 000 Ft</td><td>~11 318 000 Ft</td></tr>
-        <tr class="highlight-row"><td>Összesített bevételed</td><td>~1 649 000 Ft</td><td>~7 522 000 Ft</td><td>~18 068 000 Ft</td></tr>
-      </tbody>
-    </table>
-    <p class="disclaimer">Az 1. év közel azonos. Ahogy a laborok növekednek, az 5. évre a havi jutalékod a legrégebbi laboroknál már ~19 700 Ft a kiinduló ~9 500 Ft helyett — és 30 labor hozza párhuzamosan.</p>
+    <h4 data-i18n="scenario2-h4">Scenario 2: Growing Partnership</h4>
+    <p class="scenario-sub" data-i18n="scenario2-sub">You bring 1 lab per month for 6 months. Subscriptions grow as they expand.</p>
+    <div class="revenue-grid">
+      <div class="revenue-card"><div class="period" data-i18n="revenue-total-impl">Total Implementation Fees</div><div class="amount">€2,400</div><div class="detail" data-i18n="revenue-6-labs">6 labs × €400</div></div>
+      <div class="revenue-card"><div class="period" data-i18n="revenue-recurring">Recurring (Month 7+)</div><div class="amount">€1,200/mo</div><div class="detail" data-i18n="revenue-avg-sub">Avg €1,000/mo per lab (grows with them)</div></div>
+      <div class="revenue-card big"><div class="period" data-i18n="revenue-annual">Annual Recurring</div><div class="amount">€14,400</div><div class="detail" data-i18n="revenue-passive">+ implementation fees</div></div>
+    </div>
   </div>
 
-  <!-- Visual summary -->
-  <h3 style="margin:28px 0 12px">Összesített bevétel áttekintés (2 havonta 1 új közepes labor)</h3>
-  <div class="revenue-grid">
-    <div class="revenue-card"><div class="period">1. év</div><div class="amount">~1,6M Ft</div><div class="detail">6 labor, főleg bevezetési díj</div></div>
-    <div class="revenue-card"><div class="period">3. év összesen</div><div class="amount">~7,0–7,5M Ft</div><div class="detail">18 labor, növekedéstől függően</div></div>
-    <div class="revenue-card big"><div class="period">5. év összesen</div><div class="amount">~15–18M Ft</div><div class="detail">30 labor, növekedéstől függően</div></div>
-  </div>
-
-  <p class="disclaimer" style="margin-top:20px">A fenti számítás folyamatos toborzást feltételez (2 havonta 1 új közepes labor, ~150 eset/hó). A valós bevétel eltérhet a laborméret, a régió és az egyéni teljesítmény alapján. A bevezetési díj előirányzott, a végleges összeget személyesen egyeztetjük.</p>
+  <p class="disclaimer" data-i18n="revenue-disclaimer">These are illustrative examples, not guarantees. Real revenue depends on how many labs you bring and how long they stay. Partner commissions vary based on region, market maturity, and deal structure.</p>
 </div>
 </section>
 
-<!-- Amivel támogatunk -->
-<section class="section-light" id="tamogatas">
+<!-- Support section -->
+<section class="section-light" id="support">
 <div class="container">
-  <h2>Amivel támogatunk</h2>
+  <h2 data-i18n="support-title">What We Support You With</h2>
   <div class="support-items">
-    <div class="support-item"><div class="icon">🎓</div><div><h3>Képzés</h3><p>Termékképzés + értékesítési módszertan. Heti check-in az első hónapban.</p></div></div>
-    <div class="support-item"><div class="icon">🖥️</div><div><h3>Demo rendszer</h3><p>Saját demo amivel élőben mutathatod meg a SmileStone-t — bármilyen nyelvű ügyfélnek.</p></div></div>
-    <div class="support-item"><div class="icon">📄</div><div><h3>Értékesítési anyagok</h3><p>Prezentáció, one-pager, árajánlat sablon — kész, lokalizálható.</p></div></div>
-    <div class="support-item"><div class="icon">📩</div><div><h3>Lead-ek a régiódban</h3><p>Az adott régiódba érkező érdeklődőket átirányítjuk hozzád.</p></div></div>
-    <div class="support-item"><div class="icon">🤝</div><div><h3>Háttér</h3><p>Dedikált csatorna, rendszeres sync, technikai support. Nem vagy egyedül.</p></div></div>
+    <div class="support-item"><div class="icon">🎓</div><div><h3 data-i18n="support1-title">Training</h3><p data-i18n="support1-desc">Product training + sales methodology. Weekly check-ins in your first month.</p></div></div>
+    <div class="support-item"><div class="icon">🖥️</div><div><h3 data-i18n="support2-title">Demo System</h3><p data-i18n="support2-desc">Your own demo to show SmileStone live — in any language your customers need.</p></div></div>
+    <div class="support-item"><div class="icon">📄</div><div><h3 data-i18n="support3-title">Sales Materials</h3><p data-i18n="support3-desc">Presentation deck, one-pager, quote template — ready to go and localizable.</p></div></div>
+    <div class="support-item"><div class="icon">📩</div><div><h3 data-i18n="support4-title">Regional Leads</h3><p data-i18n="support4-desc">Leads that come in from your region are passed directly to you.</p></div></div>
+    <div class="support-item"><div class="icon">🤖</div><div><h3 data-i18n="support5-title">AI-Powered Tools</h3><p data-i18n="support5-desc">We're building an AI chatbot for instant support and an interactive onboarding assistant that guides new labs through setup step-by-step.</p></div></div>
+    <div class="support-item"><div class="icon">🤝</div><div><h3 data-i18n="support6-title">Backstop</h3><p data-i18n="support6-desc">Dedicated channel, regular syncs, technical support. You're not alone.</p></div></div>
   </div>
   <div class="resource-links">
-    <a href="https://smilestone.hu" target="_blank" class="resource-link">🌐 smilestone.hu</a>
-    <a href="https://www.youtube.com/@smilestonehu2111" target="_blank" class="resource-link">▶️ YouTube csatorna</a>
+    <a href="https://smilestone.hu" target="_blank" class="resource-link" data-i18n="resource1">🌐 smilestone.hu</a>
+    <a href="https://www.youtube.com/@smilestonehu2111" target="_blank" class="resource-link" data-i18n="resource2">▶️ YouTube Channel</a>
   </div>
 </div>
 </section>
 
-<!-- Szerződésminta -->
-<section class="section-gray" id="szerzodes">
+<!-- Partner Agreement -->
+<section class="section-gray" id="agreement">
 <div class="container">
-  <h2>Partneri megállapodás — vázlat</h2>
-  <p class="section-title-sub">Ez egy egyszerűsített összefoglaló, nem végleges jogi dokumentum. A pontos feltételeket személyesen egyeztetjük.</p>
+  <h2 data-i18n="agreement-title">Partner Agreement — Outline</h2>
+  <p class="section-title-sub" data-i18n="agreement-subtitle">This is a simplified summary, not a final legal document. Exact terms are discussed personally.</p>
 
   <div class="contract-box">
-    <h4>PARTNERI MEGÁLLAPODÁS</h4>
-    <span class="draft-label">VÁZLAT</span>
+    <h4 data-i18n="agreement-header">PARTNER AGREEMENT</h4>
+    <span class="draft-label" data-i18n="agreement-draft">DRAFT</span>
 
     <div class="contract-section">
-      <h5>1. A partnerség tárgya és hatálya</h5>
+      <h5 data-i18n="agreement-s1-title">1. Partnership Subject and Scope</h5>
       <ul>
-        <li>Partner jogosult a SmileStone nevében eljárni értékesítési, marketing és implementációs célból, az 5–50 fős KKV szegmensben</li>
-        <li>Partner használhatja a SmileStone logót, márkanevet és marketinganyagokat a brand guideline szerint</li>
-        <li>Partner nem jogosult SmileStone nevében szerződést aláírni, fizetési feltételeket módosítani vagy fejlesztési ígéretet adni</li>
+        <li data-i18n="agreement-s1-li1">Partner is authorized to act on behalf of SmileStone for sales, marketing, and implementation purposes, in the 5–50 person SMB segment</li>
+        <li data-i18n="agreement-s1-li2">Partner may use the SmileStone logo, brand name, and marketing materials according to brand guidelines</li>
+        <li data-i18n="agreement-s1-li3">Partner is not authorized to sign contracts on behalf of SmileStone, modify payment terms, or make development promises</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>2. Lead-kezelés és területi együttműködés</h5>
+      <h5 data-i18n="agreement-s2-title">2. Lead Management and Regional Cooperation</h5>
       <ul>
-        <li>Minden potenciális ügyfelet 24 órán belül be kell jelenteni SmileStone felé</li>
-        <li>Érvényes regisztráció esetén a lead 90 napig a Partnerhez tartozik</li>
-        <li>SmileStone a saját beérkező érdeklődőket is átadhatja Partnernek — teljes jutalékra jogosítanak</li>
-        <li>Nem-megkerülés: egyik fél sem kerüli meg a másikat jutalék szempontjából</li>
+        <li data-i18n="agreement-s2-li1">Every potential customer must be reported to SmileStone within 24 hours</li>
+        <li data-i18n="agreement-s2-li2">Upon valid registration, the lead belongs to the Partner for 90 days</li>
+        <li data-i18n="agreement-s2-li3">SmileStone may also pass along inbound leads from the region — these come with full commission rights</li>
+        <li data-i18n="agreement-s2-li4">Non-circumvention: neither party bypasses the other for commission purposes</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>3. Implementáció és árképzés</h5>
+      <h5 data-i18n="agreement-s3-title">3. Implementation and Pricing</h5>
       <ul>
-        <li>Partner szabadon határozza meg a bevezetési/implementációs szolgáltatás árát, és közvetlenül az ügyfél felé számlázza</li>
-        <li>A SmileStone szoftver előfizetési díját az ügyfél közvetlenül a SmileStone-nak fizeti</li>
+        <li data-i18n="agreement-s3-li1">Partner freely sets the price for implementation/professional services, and invoices the customer directly</li>
+        <li data-i18n="agreement-s3-li2">The customer pays SmileStone's software subscription fee directly to SmileStone</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>4. Jutalék és elszámolás</h5>
+      <h5 data-i18n="agreement-s4-title">4. Commission and Settlement</h5>
       <ul>
-        <li>Havi jutalék: az ügyfél nettó előfizetési díjának 20%-a, ameddig aktív előfizető</li>
-        <li>Bővített csomag, extra modulok, felhasználószám-növekedés → mind beleszámít a jutalékalapba</li>
-        <li>Elszámolás: SmileStone havonta kimutatást küld, Partner számlát állít ki, kifizetés 15 napon belül</li>
-        <li>Szerződés megszűnése után 12 hónapig továbbra is jár a jutalék a korábban behozott ügyfelek után</li>
+        <li data-i18n="agreement-s4-li1">Monthly commission: 20% of the customer's net subscription fee, for as long as they remain an active subscriber</li>
+        <li data-i18n="agreement-s4-li2">Premium packages, extra modules, additional users — all count toward the commission base</li>
+        <li data-i18n="agreement-s4-li3">Settlement: SmileStone sends a monthly statement, Partner invoices, payment within 15 days</li>
+        <li data-i18n="agreement-s4-li4">After contract termination, the Partner continues to earn commission from previously brought customers for 12 months</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>5. Support és technikai együttműködés</h5>
+      <h5 data-i18n="agreement-s5-title">5. Support and Technical Cooperation</h5>
       <ul>
-        <li>Partner vállalja az 1st line supportot (user kérdések, alapvető hibaelhárítás)</li>
-        <li>SmileStone biztosítja a 2nd line supportot (bugok, konfiguráció, teljesítmény-problémák)</li>
-        <li>L2 eszkaláció: munkaidőben 4 órán belüli válaszidő</li>
+        <li data-i18n="agreement-s5-li1">Partner provides 1st-line support (user questions, basic troubleshooting)</li>
+        <li data-i18n="agreement-s5-li2">SmileStone provides 2nd-line support (bugs, configuration, performance issues)</li>
+        <li data-i18n="agreement-s5-li3">L2 escalation: response within 4 hours during business hours</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>6. Onboarding és képzés</h5>
+      <h5 data-i18n="agreement-s6-title">6. Onboarding and Training</h5>
       <ul>
-        <li>SmileStone termékkonfigurációt, személyre szabott beállításokat végez</li>
-        <li>Partner feladata a labor napi szintű betanítása, végigkísérés</li>
-        <li>Negyedévente online képzés, folyamatosan frissített tudásbázis</li>
+        <li data-i18n="agreement-s6-li1">SmileStone handles product configuration and customization</li>
+        <li data-i18n="agreement-s6-li2">Partner is responsible for day-to-day lab training and guidance</li>
+        <li data-i18n="agreement-s6-li3">Quarterly online training, continuously updated knowledge base</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>7. Márkahasználat és marketing</h5>
+      <h5 data-i18n="agreement-s7-title">7. Brand Use and Marketing</h5>
       <ul>
-        <li>Partner a SmileStone által kiadott anyagokat használhatja, egyedi anyagokhoz előzetes jóváhagyás szükséges</li>
-        <li>SmileStone jogosult Partnert referenciaként feltüntetni</li>
+        <li data-i18n="agreement-s7-li1">Partner may use materials provided by SmileStone; custom materials require prior approval</li>
+        <li data-i18n="agreement-s7-li2">SmileStone may list Partner as a reference</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>8. Adatvédelem és GDPR</h5>
+      <h5 data-i18n="agreement-s8-title">8. Data Protection and GDPR</h5>
       <ul>
-        <li>Mindkét fél betartja a GDPR és helyi adatvédelmi előírásokat</li>
-        <li>Személyes adatok csak a szerződés teljesítéséhez szükséges mértékben kezelhetők</li>
+        <li data-i18n="agreement-s8-li1">Both parties comply with GDPR and local data protection regulations</li>
+        <li data-i18n="agreement-s8-li2">Personal data may only be processed to the extent necessary to fulfill the contract</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>9. Felelősség és kártérítés</h5>
+      <h5 data-i18n="agreement-s9-title">9. Liability and Indemnification</h5>
       <ul>
-        <li>SmileStone felel a szoftver rendelkezésre állásáért és hibajavításáért</li>
-        <li>Partner felel a saját értékesítési ígéretei és szolgáltatásai jogszerűségéért</li>
-        <li>Felelősségkorlátozás: maximum az utolsó 12 havi jutalék összege</li>
+        <li data-i18n="agreement-s9-li1">SmileStone is responsible for software availability and bug fixes</li>
+        <li data-i18n="agreement-s9-li2">Partner is responsible for the legality of their own sales promises and services</li>
+        <li data-i18n="agreement-s9-li3">Liability cap: maximum of 12 months of commission fees</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>10. Szerződés megszűnése</h5>
+      <h5 data-i18n="agreement-s10-title">10. Contract Termination</h5>
       <ul>
-        <li>Határozatlan idejű, bármely fél felmondhatja 30 napos határidővel</li>
-        <li>Azonnali felmondás súlyos szerződésszegés, fizetésképtelenség vagy jogellenes tevékenység esetén</li>
-        <li>Felmondás után is érvényes: jutalékjogosultság, titoktartás, adatvédelem</li>
+        <li data-i18n="agreement-s10-li1">Indefinite term, either party may terminate with 30 days' notice</li>
+        <li data-i18n="agreement-s10-li2">Immediate termination in case of material breach, insolvency, or illegal activity</li>
+        <li data-i18n="agreement-s10-li3">After termination, these remain in effect: commission rights, confidentiality, data protection</li>
       </ul>
     </div>
 
     <div class="contract-section">
-      <h5>11. Egyéb rendelkezések</h5>
+      <h5 data-i18n="agreement-s11-title">11. Other Terms</h5>
       <ul>
-        <li>Titoktartás: a szerződés és az üzleti információk bizalmasan kezelendők</li>
-        <li>Nincs kizárólagosság — több partner is működhet párhuzamosan</li>
-        <li>Alkalmazandó jog: magyar jog, vitarendezés: Budapesti Törvényszék</li>
+        <li data-i18n="agreement-s11-li1">Confidentiality: contract and business information must be handled confidentially</li>
+        <li data-i18n="agreement-s11-li2">No exclusivity — multiple partners can operate in parallel</li>
+        <li data-i18n="agreement-s11-li3">Applicable law: Hungarian law, disputes: Budapest Court</li>
       </ul>
     </div>
 
-    <div class="contract-warning">⚠️ Ez egy tájékoztató vázlat. A végleges szerződést ügyvéd készíti, és a jelentkezés után személyesen egyeztetjük a részleteket.</div>
+    <div class="contract-warning" data-i18n="agreement-warning">⚠️ This is an informational draft. The final contract will be prepared by legal counsel, and details are discussed personally after application.</div>
   </div>
 </div>
 </section>
 
-<!-- Jelentkezés -->
-<section class="form-section section-light" id="jelentkezes">
+<!-- Application Form -->
+<section class="form-section section-light" id="apply">
 <div class="container">
-  <h2>Érdekel? Mesélj magadról</h2>
-  <p class="section-title-sub">Nem kötelezel el semmire. Kitöltöd, mi felvesszük veled a kapcsolatot és megbeszéljük a részleteket.</p>
+  <h2 data-i18n="form-title">Interested? Tell Us About Yourself</h2>
+  <p class="section-title-sub" data-i18n="form-subtitle">No commitment. Fill this out, we'll reach out and discuss the details.</p>
 
   <form id="partnerForm" class="form-grid" novalidate>
     <div>
-      <label class="field-label">Hogy hívnak?</label>
-      <input type="text" id="name" placeholder="Teljes neved" required>
-      <div class="error-msg" id="name-error">Ezt töltsd ki</div>
+      <label class="field-label" data-i18n="form-name-label">What's your name?</label>
+      <input type="text" id="name" data-i18n-placeholder="form-name-placeholder" placeholder="Your full name" required>
+      <div class="error-msg" id="name-error" data-i18n="form-error-required">Please fill this in</div>
     </div>
     <div>
-      <label class="field-label">Email címed</label>
-      <input type="email" id="email" placeholder="pelda@email.hu" required>
-      <div class="error-msg" id="email-error">Ezt töltsd ki</div>
+      <label class="field-label" data-i18n="form-email-label">Email address</label>
+      <input type="email" id="email" data-i18n-placeholder="form-email-placeholder" placeholder="example@email.com" required>
+      <div class="error-msg" id="email-error" data-i18n="form-error-required">Please fill this in</div>
     </div>
     <div>
-      <label class="field-label">Telefonszámod</label>
-      <input type="text" id="phone" placeholder="Nem kötelező, de gyorsabb">
+      <label class="field-label" data-i18n="form-phone-label">Phone number</label>
+      <input type="text" id="phone" data-i18n-placeholder="form-phone-placeholder" placeholder="Optional, but speeds things up">
     </div>
     <div>
-      <label class="field-label">Mesélj magadról pár mondatban</label>
-      <textarea id="about" rows="3" placeholder="Mivel foglalkozol most? Ha cég, milyen bevezetési/sales tapasztalatotok van?" required></textarea>
-      <div class="error-msg" id="about-error">Ezt töltsd ki</div>
+      <label class="field-label" data-i18n="form-about-label">Tell us a bit about yourself</label>
+      <textarea id="about" rows="3" data-i18n-placeholder="form-about-placeholder" placeholder="What do you do now? If it's a company, what implementation/sales experience do you have?" required></textarea>
+      <div class="error-msg" id="about-error" data-i18n="form-error-required">Please fill this in</div>
     </div>
     <div>
-      <label class="field-label">Van kapcsolatod fogtechnikai laborokkal?</label>
-      <select id="network" required>
-        <option value="">Válassz egyet</option>
-        <option>Igen, többel is dolgozom/dolgoztam</option>
-        <option>Igen, néhányat ismerek</option>
-        <option>Nem, de tudom hogyan jutok el hozzájuk</option>
-        <option>Nem igazán</option>
+      <label class="field-label" data-i18n="form-network-label">Do you have connections with dental labs?</label>
+      <select id="network" data-i18n-select="form-network" required>
+        <option value="" data-i18n-opt="form-select-choose">Choose one</option>
+        <option data-i18n-opt="form-network-opt1">Yes, I work with multiple</option>
+        <option data-i18n-opt="form-network-opt2">Yes, I know a few</option>
+        <option data-i18n-opt="form-network-opt3">No, but I know how to reach them</option>
+        <option data-i18n-opt="form-network-opt4">Not really</option>
       </select>
-      <div class="error-msg" id="network-error">Ezt töltsd ki</div>
+      <div class="error-msg" id="network-error" data-i18n="form-error-required">Please fill this in</div>
     </div>
     <div>
-      <label class="field-label">Melyik régióban dolgoznál?</label>
+      <label class="field-label" data-i18n="form-region-label">Which region would you work in?</label>
       <div class="checkbox-group" id="regions">
-        <label><input type="checkbox" value="Magyarország"> Magyarország</label>
-        <label><input type="checkbox" value="Románia"> Románia</label>
-        <label><input type="checkbox" value="Szlovákia"> Szlovákia</label>
-        <label><input type="checkbox" value="Lengyelország"> Lengyelország</label>
-        <label><input type="checkbox" value="Csehország"> Csehország</label>
-        <label><input type="checkbox" value="DACH"> DACH</label>
-        <label><input type="checkbox" value="Benelux"> Benelux</label>
-        <label><input type="checkbox" value="Dél-Ázsia"> Dél-Ázsia</label>
-        <label><input type="checkbox" value="Más régió"> Más régió</label>
+        <label><input type="checkbox" value="Hungary" data-i18n-label="form-region-hungary"> <span data-i18n="form-region-hungary">Hungary</span></label>
+        <label><input type="checkbox" value="Romania" data-i18n-label="form-region-romania"> <span data-i18n="form-region-romania">Romania</span></label>
+        <label><input type="checkbox" value="Slovakia" data-i18n-label="form-region-slovakia"> <span data-i18n="form-region-slovakia">Slovakia</span></label>
+        <label><input type="checkbox" value="Poland" data-i18n-label="form-region-poland"> <span data-i18n="form-region-poland">Poland</span></label>
+        <label><input type="checkbox" value="Czech Republic" data-i18n-label="form-region-cz"> <span data-i18n="form-region-cz">Czech Republic</span></label>
+        <label><input type="checkbox" value="DACH" data-i18n-label="form-region-dach"> <span data-i18n="form-region-dach">DACH</span></label>
+        <label><input type="checkbox" value="Benelux" data-i18n-label="form-region-benelux"> <span data-i18n="form-region-benelux">Benelux</span></label>
+        <label><input type="checkbox" value="South Asia" data-i18n-label="form-region-sa"> <span data-i18n="form-region-sa">South Asia</span></label>
+        <label><input type="checkbox" value="Other region" data-i18n-label="form-region-other"> <span data-i18n="form-region-other">Other region</span></label>
       </div>
-      <div class="error-msg" id="regions-error">Válassz legalább egyet</div>
+      <div class="error-msg" id="regions-error" data-i18n="form-error-regions">Choose at least one</div>
     </div>
     <div>
-      <label class="field-label">Mennyit tudnál erre szánni hetente?</label>
-      <select id="time">
-        <option value="">Válassz egyet</option>
-        <option>Napi szinten (teljes munkaidő)</option>
-        <option>Heti 10-20 óra</option>
-        <option>Heti pár óra</option>
-        <option>Még nem tudom</option>
+      <label class="field-label" data-i18n="form-time-label">How much time could you dedicate weekly?</label>
+      <select id="time" data-i18n-select="form-time">
+        <option value="" data-i18n-opt="form-select-choose">Choose one</option>
+        <option data-i18n-opt="form-time-opt1">Full-time (daily)</option>
+        <option data-i18n-opt="form-time-opt2">10–20 hours/week</option>
+        <option data-i18n-opt="form-time-opt3">A few hours/week</option>
+        <option data-i18n-opt="form-time-opt4">Not sure yet</option>
       </select>
     </div>
     <div>
-      <label class="field-label">Van tapasztalatod ERP/szoftver bevezetésben vagy B2B értékesítésben?</label>
-      <select id="b2b">
-        <option value="">Válassz egyet</option>
-        <option>Igen, aktívan csinálom (cég vagy egyéni)</option>
-        <option>Igen, volt korábban</option>
-        <option>Nem, de érdekel</option>
-        <option>Nem</option>
+      <label class="field-label" data-i18n="form-b2b-label">Do you have ERP/software implementation or B2B sales experience?</label>
+      <select id="b2b" data-i18n-select="form-b2b">
+        <option value="" data-i18n-opt="form-select-choose">Choose one</option>
+        <option data-i18n-opt="form-b2b-opt1">Yes, I do it actively (as a company or freelancer)</option>
+        <option data-i18n-opt="form-b2b-opt2">Yes, I did before</option>
+        <option data-i18n-opt="form-b2b-opt3">No, but I'm interested</option>
+        <option data-i18n-opt="form-b2b-opt4">No</option>
       </select>
     </div>
     <div>
-      <label class="field-label">Mi fogott meg a SmileStone-ban?</label>
-      <textarea id="motivation" rows="2" placeholder="Vagy bármi kérdésed amit szeretnél feltenni"></textarea>
+      <label class="field-label" data-i18n="form-motivation-label">What caught your interest about SmileStone?</label>
+      <textarea id="motivation" rows="2" data-i18n-placeholder="form-motivation-placeholder" placeholder="Or any questions you'd like to ask"></textarea>
     </div>
     <div>
-      <label class="field-label">Van kérdésed hozzánk?</label>
-      <textarea id="questions" rows="2" placeholder="Bármi ami nem volt egyértelmű, vagy amit szeretnél tudni a partnerségről"></textarea>
+      <label class="field-label" data-i18n="form-questions-label">Any other questions for us?</label>
+      <textarea id="questions" rows="2" data-i18n-placeholder="form-questions-placeholder" placeholder="Anything unclear or something you want to know about the partnership"></textarea>
     </div>
     <div class="submit-row">
-      <button type="submit" class="cta-btn" style="width:100%">Jelentkezem →</button>
+      <button type="submit" class="cta-btn" style="width:100%" data-i18n="form-submit">Apply →</button>
     </div>
-    <p class="form-note">Nem állásinterjú — csak szeretnénk megérteni, kivel beszélünk. Utána személyesen egyeztetünk.</p>
+    <p class="form-note" data-i18n="form-note">Not a job interview — we just want to understand who we're talking to. Then we'll discuss personally.</p>
   </form>
 
   <div class="success-screen" id="successScreen">
     <div class="check">✅</div>
-    <h3 id="successName">Köszi!</h3>
-    <p>Hamarosan jelentkezünk — jellemzően 1-2 munkanapon belül.</p>
-    <p><a href="https://smilestone.hu" target="_blank">Nézd meg a rendszert részletesebben → smilestone.hu</a></p>
-    <p><a href="https://www.youtube.com/@smilestonehu2111" target="_blank">YouTube csatornánk →</a></p>
+    <h3 id="successName" data-i18n="success-title">Thanks!</h3>
+    <p data-i18n="success-message">We'll be in touch — usually within 1–2 business days.</p>
+    <p><a href="https://smilestone.hu" target="_blank" data-i18n="success-link1">Learn more about the system → smilestone.hu</a></p>
+    <p><a href="https://www.youtube.com/@smilestonehu2111" target="_blank" data-i18n="success-link2">Our YouTube Channel →</a></p>
   </div>
 </div>
 </section>
@@ -518,36 +502,454 @@ footer .links{display:flex;justify-content:center;gap:16px;margin:8px 0;flex-wra
 <div class="container">
   <img src="https://smilestone.hu/landing-page/assets/img/logo-white.svg" alt="SmileStone">
   <div class="links">
-    <a href="https://smilestone.hu" target="_blank">smilestone.hu</a>
+    <a href="https://smilestone.hu" target="_blank" data-i18n="footer-site">smilestone.hu</a>
     <span>·</span>
     <a href="mailto:hq@smilestone.hu">hq@smilestone.hu</a>
     <span>·</span>
-    <a href="https://www.youtube.com/@smilestonehu2111" target="_blank">▶️ YouTube</a>
+    <a href="https://www.youtube.com/@smilestonehu2111" target="_blank" data-i18n="footer-youtube">▶️ YouTube</a>
   </div>
-  <p style="margin-top:8px">Globális fogtechnikai labor ERP</p>
-  <p style="margin-top:10px;font-size:12px">SmileStone © 2026 · Ez az oldal béta verzió.</p>
+  <p class="footer-tagline" data-i18n="footer-tagline">Global Dental Lab ERP</p>
+  <div class="footer-divider"></div>
+  <p style="font-size:12px;opacity:.6" data-i18n="footer-copyright">SmileStone © 2026 · This page is a beta version.</p>
 </div>
 </footer>
 
 <!-- Floating CTA -->
 <div class="floating-cta" id="floatingCta">
-  <a href="#jelentkezes" class="cta-btn">Jelentkezem →</a>
+  <a href="#apply" class="cta-btn" data-i18n="floating-cta">Apply →</a>
 </div>
 
 <script>
+// Language switcher and translation system
+let currentLang = 'en';
+
+const translations = {
+  en: {
+    'beta-banner': '🚧 This page is a beta version. Final partner terms will be discussed personally.',
+    'header-site': 'smilestone.hu',
+    'header-apply': 'Apply',
+    'hero-h1': 'Partner Program<br>for Dental Lab ERP Implementation',
+    'hero-subtitle': 'SmileStone is an ERP system built for dental labs. We\'re looking for partners and ERP implementation companies who can deploy the system in their region — and share in the revenue.',
+    'hero-cta': 'How does it work? ↓',
+    'hero-small': '5 minutes to read · No commitment',
+    'stat-users': 'active users',
+    'stat-commission': 'recurring monthly commission',
+    'stat-operation': 'live operation',
+    'what-title': 'What Does SmileStone Do?',
+    'what-subtitle': 'Complete digitalization of dental lab operations — orders, production tracking, invoicing, and analytics. Dentists use the system for free; labs pay a subscription based on case volume.',
+    'feature1-title': 'Digital Orders',
+    'feature1-desc': 'Dentists order online, labs see the job instantly. No paper, no misunderstandings.',
+    'feature2-title': 'Production Tracking',
+    'feature2-desc': 'Every job is tracked: who\'s working on it, where it\'s at, when it\'s due. QR codes included.',
+    'feature3-title': 'Billing & Accounting',
+    'feature3-desc': 'Automatic invoices, custom price lists. Tax-compliant e-invoicing.',
+    'feature4-title': 'Business Insights',
+    'feature4-desc': 'Revenue, receivables, team performance — real-time, in one dashboard.',
+    'trust-line': '2600+ users · 100,000+ cases processed · Global SaaS, local support',
+    'how-title': 'How Does the Partnership Work?',
+    'how-subtitle': 'Simple model, transparent terms. You sell and implement the system — we provide the tech backend, marketing materials, and pass along leads from your region.',
+    'step1-title': 'Find a Lab',
+    'step1-desc': 'Through your own network and connections. We also pass along leads that come in from your region directly to you.',
+    'step2-title': 'Implement the System',
+    'step2-desc': 'You are the lab\'s main contact during onboarding. We handle configuration and technical training — you guide the lab through the process.',
+    'step3-title': 'Earn from Revenue',
+    'step3-desc': 'One-time implementation fee per lab + 20% of the lab\'s monthly subscription, as long as they remain an active customer.',
+    'looking-title': 'Who Are We Looking For?',
+    'looking-subtitle': 'You don\'t need to be in the dental world — but you do need the right attitude. Here\'s who works best:',
+    'looking1-title': 'Sales or Implementation',
+    'looking1-desc': 'You sell software, implement ERP, or run a consulting business with B2B experience.',
+    'looking2-title': 'Lab Connections',
+    'looking2-desc': 'You already know labs or know how to find them — through suppliers, dentist networks, or industry contacts.',
+    'looking3-title': 'Regional Focus',
+    'looking3-desc': 'You want to be the main contact for your region. We support, but you lead the market.',
+    'looking4-title': 'Realistic Timeline',
+    'looking4-desc': 'Part-time partners work — full-time is better. We expect real effort after month one.',
+    'revenue-title': 'What Can You Expect to Earn?',
+    'revenue-subtitle': 'Commission structure is simple. Here\'s what it looks like:',
+    'revenue-how-h4': 'How It Works',
+    'revenue-how-li1': 'One-time implementation fee: you set the price, you invoice the lab directly',
+    'revenue-how-li2': 'Recurring commission: 20% of the lab\'s monthly subscription (as long as they stay with us)',
+    'revenue-how-li3': 'Premium modules, extra users, add-ons: all count toward commission',
+    'revenue-how-li4': 'Payments settle monthly; we send a statement, you invoice, payment within 15 days',
+    'revenue-how-note': 'Contract termination? You keep earning commission from customers you brought for 12 months after.',
+    'revenue-scenarios': 'Example Scenarios',
+    'scenario1-h4': 'Scenario 1: Small Start',
+    'scenario1-sub': 'You bring 2 labs in your first 3 months (realistic).',
+    'revenue-month': 'Month 1',
+    'revenue-month3': 'Month 3',
+    'revenue-first-month': 'Just getting started',
+    'revenue-first-labs': '2 labs × €400 implementation',
+    'revenue-recurring': 'Recurring (Month 4+)',
+    'revenue-recurring-detail': '20% of 2 × €1,000/mo subscriptions',
+    'scenario2-h4': 'Scenario 2: Growing Partnership',
+    'scenario2-sub': 'You bring 1 lab per month for 6 months. Subscriptions grow as they expand.',
+    'revenue-total-impl': 'Total Implementation Fees',
+    'revenue-6-labs': '6 labs × €400',
+    'revenue-avg-sub': 'Avg €1,000/mo per lab (grows with them)',
+    'revenue-annual': 'Annual Recurring',
+    'revenue-passive': '+ implementation fees',
+    'revenue-disclaimer': 'These are illustrative examples, not guarantees. Real revenue depends on how many labs you bring and how long they stay. Partner commissions vary based on region, market maturity, and deal structure.',
+    'support-title': 'What We Support You With',
+    'support1-title': 'Training',
+    'support1-desc': 'Product training + sales methodology. Weekly check-ins in your first month.',
+    'support2-title': 'Demo System',
+    'support2-desc': 'Your own demo to show SmileStone live — in any language your customers need.',
+    'support3-title': 'Sales Materials',
+    'support3-desc': 'Presentation deck, one-pager, quote template — ready to go and localizable.',
+    'support4-title': 'Regional Leads',
+    'support4-desc': 'Leads that come in from your region are passed directly to you.',
+    'support5-title': 'AI-Powered Tools',
+    'support5-desc': 'We\'re building an AI chatbot for instant support and an interactive onboarding assistant that guides new labs through setup step-by-step.',
+    'support6-title': 'Backstop',
+    'support6-desc': 'Dedicated channel, regular syncs, technical support. You\'re not alone.',
+    'resource1': '🌐 smilestone.hu',
+    'resource2': '▶️ YouTube Channel',
+    'agreement-title': 'Partner Agreement — Outline',
+    'agreement-subtitle': 'This is a simplified summary, not a final legal document. Exact terms are discussed personally.',
+    'agreement-header': 'PARTNER AGREEMENT',
+    'agreement-draft': 'DRAFT',
+    'agreement-s1-title': '1. Partnership Subject and Scope',
+    'agreement-s1-li1': 'Partner is authorized to act on behalf of SmileStone for sales, marketing, and implementation purposes, in the 5–50 person SMB segment',
+    'agreement-s1-li2': 'Partner may use the SmileStone logo, brand name, and marketing materials according to brand guidelines',
+    'agreement-s1-li3': 'Partner is not authorized to sign contracts on behalf of SmileStone, modify payment terms, or make development promises',
+    'agreement-s2-title': '2. Lead Management and Regional Cooperation',
+    'agreement-s2-li1': 'Every potential customer must be reported to SmileStone within 24 hours',
+    'agreement-s2-li2': 'Upon valid registration, the lead belongs to the Partner for 90 days',
+    'agreement-s2-li3': 'SmileStone may also pass along inbound leads from the region — these come with full commission rights',
+    'agreement-s2-li4': 'Non-circumvention: neither party bypasses the other for commission purposes',
+    'agreement-s3-title': '3. Implementation and Pricing',
+    'agreement-s3-li1': 'Partner freely sets the price for implementation/professional services, and invoices the customer directly',
+    'agreement-s3-li2': 'The customer pays SmileStone\'s software subscription fee directly to SmileStone',
+    'agreement-s4-title': '4. Commission and Settlement',
+    'agreement-s4-li1': 'Monthly commission: 20% of the customer\'s net subscription fee, for as long as they remain an active subscriber',
+    'agreement-s4-li2': 'Premium packages, extra modules, additional users — all count toward the commission base',
+    'agreement-s4-li3': 'Settlement: SmileStone sends a monthly statement, Partner invoices, payment within 15 days',
+    'agreement-s4-li4': 'After contract termination, the Partner continues to earn commission from previously brought customers for 12 months',
+    'agreement-s5-title': '5. Support and Technical Cooperation',
+    'agreement-s5-li1': 'Partner provides 1st-line support (user questions, basic troubleshooting)',
+    'agreement-s5-li2': 'SmileStone provides 2nd-line support (bugs, configuration, performance issues)',
+    'agreement-s5-li3': 'L2 escalation: response within 4 hours during business hours',
+    'agreement-s6-title': '6. Onboarding and Training',
+    'agreement-s6-li1': 'SmileStone handles product configuration and customization',
+    'agreement-s6-li2': 'Partner is responsible for day-to-day lab training and guidance',
+    'agreement-s6-li3': 'Quarterly online training, continuously updated knowledge base',
+    'agreement-s7-title': '7. Brand Use and Marketing',
+    'agreement-s7-li1': 'Partner may use materials provided by SmileStone; custom materials require prior approval',
+    'agreement-s7-li2': 'SmileStone may list Partner as a reference',
+    'agreement-s8-title': '8. Data Protection and GDPR',
+    'agreement-s8-li1': 'Both parties comply with GDPR and local data protection regulations',
+    'agreement-s8-li2': 'Personal data may only be processed to the extent necessary to fulfill the contract',
+    'agreement-s9-title': '9. Liability and Indemnification',
+    'agreement-s9-li1': 'SmileStone is responsible for software availability and bug fixes',
+    'agreement-s9-li2': 'Partner is responsible for the legality of their own sales promises and services',
+    'agreement-s9-li3': 'Liability cap: maximum of 12 months of commission fees',
+    'agreement-s10-title': '10. Contract Termination',
+    'agreement-s10-li1': 'Indefinite term, either party may terminate with 30 days\' notice',
+    'agreement-s10-li2': 'Immediate termination in case of material breach, insolvency, or illegal activity',
+    'agreement-s10-li3': 'After termination, these remain in effect: commission rights, confidentiality, data protection',
+    'agreement-s11-title': '11. Other Terms',
+    'agreement-s11-li1': 'Confidentiality: contract and business information must be handled confidentially',
+    'agreement-s11-li2': 'No exclusivity — multiple partners can operate in parallel',
+    'agreement-s11-li3': 'Applicable law: Hungarian law, disputes: Budapest Court',
+    'agreement-warning': '⚠️ This is an informational draft. The final contract will be prepared by legal counsel, and details are discussed personally after application.',
+    'form-title': 'Interested? Tell Us About Yourself',
+    'form-subtitle': 'No commitment. Fill this out, we\'ll reach out and discuss the details.',
+    'form-name-label': 'What\'s your name?',
+    'form-name-placeholder': 'Your full name',
+    'form-email-label': 'Email address',
+    'form-email-placeholder': 'example@email.com',
+    'form-phone-label': 'Phone number',
+    'form-phone-placeholder': 'Optional, but speeds things up',
+    'form-about-label': 'Tell us a bit about yourself',
+    'form-about-placeholder': 'What do you do now? If it\'s a company, what implementation/sales experience do you have?',
+    'form-network-label': 'Do you have connections with dental labs?',
+    'form-select-choose': 'Choose one',
+    'form-network-opt1': 'Yes, I work with multiple',
+    'form-network-opt2': 'Yes, I know a few',
+    'form-network-opt3': 'No, but I know how to reach them',
+    'form-network-opt4': 'Not really',
+    'form-region-label': 'Which region would you work in?',
+    'form-region-hungary': 'Hungary',
+    'form-region-romania': 'Romania',
+    'form-region-slovakia': 'Slovakia',
+    'form-region-poland': 'Poland',
+    'form-region-cz': 'Czech Republic',
+    'form-region-dach': 'DACH',
+    'form-region-benelux': 'Benelux',
+    'form-region-sa': 'South Asia',
+    'form-region-other': 'Other region',
+    'form-time-label': 'How much time could you dedicate weekly?',
+    'form-time-opt1': 'Full-time (daily)',
+    'form-time-opt2': '10–20 hours/week',
+    'form-time-opt3': 'A few hours/week',
+    'form-time-opt4': 'Not sure yet',
+    'form-b2b-label': 'Do you have ERP/software implementation or B2B sales experience?',
+    'form-b2b-opt1': 'Yes, I do it actively (as a company or freelancer)',
+    'form-b2b-opt2': 'Yes, I did before',
+    'form-b2b-opt3': 'No, but I\'m interested',
+    'form-b2b-opt4': 'No',
+    'form-motivation-label': 'What caught your interest about SmileStone?',
+    'form-motivation-placeholder': 'Or any questions you\'d like to ask',
+    'form-questions-label': 'Any other questions for us?',
+    'form-questions-placeholder': 'Anything unclear or something you want to know about the partnership',
+    'form-submit': 'Apply →',
+    'form-error-required': 'Please fill this in',
+    'form-error-regions': 'Choose at least one',
+    'form-note': 'Not a job interview — we just want to understand who we\'re talking to. Then we\'ll discuss personally.',
+    'success-title': 'Thanks!',
+    'success-message': 'We\'ll be in touch — usually within 1–2 business days.',
+    'success-link1': 'Learn more about the system → smilestone.hu',
+    'success-link2': 'Our YouTube Channel →',
+    'footer-site': 'smilestone.hu',
+    'footer-youtube': '▶️ YouTube',
+    'footer-tagline': 'Global Dental Lab ERP',
+    'footer-copyright': 'SmileStone © 2026 · This page is a beta version.',
+    'floating-cta': 'Apply →',
+  },
+  hu: {
+    'beta-banner': '🚧 Ez az oldal béta verzió. A végleges partneri feltételeket személyesen egyeztetjük.',
+    'header-site': 'smilestone.hu',
+    'header-apply': 'Jelentkezés',
+    'hero-h1': 'Partneri együttműködés<br>fogtechnikai ERP bevezetésre',
+    'hero-subtitle': 'A SmileStone egy fogtechnikai laboroknak készült ERP rendszer. Olyan partnereket és ERP bevezető cégeket keresünk, akik a saját régiójukban bevezetik a rendszert laboroknál — és részesednek a bevételből.',
+    'hero-cta': 'Hogyan működik? ↓',
+    'hero-small': '5 perc olvasás · Nem kötelező',
+    'stat-users': 'aktív felhasználó',
+    'stat-commission': 'visszatérő havi jutalék',
+    'stat-operation': 'éles üzem',
+    'what-title': 'Mit csinál a SmileStone?',
+    'what-subtitle': 'Fogtechnikai laborok teljes digitalizálása — rendeléskezelés, gyártáskövetés, számlázás és üzleti áttekintés. A fogorvosok ingyenesen használhatják; a laborok a munkadarabok száma alapján fizetnek előfizetést.',
+    'feature1-title': 'Digitális megrendelés',
+    'feature1-desc': 'A fogorvosok online rendelnek, a laborok azonnal látják a feladatot. Nincs papír, nincs félreértés.',
+    'feature2-title': 'Gyártáskövetés',
+    'feature2-desc': 'Minden munkadarab nyomon követhető: ki dolgozik rajta, hol tart, mikor kell kész. QR-kódok mellékeltével.',
+    'feature3-title': 'Számlázás & elszámolás',
+    'feature3-desc': 'Automatikus számlák, egyedi árlista. Adózási és e-szamlázási megfelelőség.',
+    'feature4-title': 'Üzleti áttekintés',
+    'feature4-desc': 'Bevétel, követelések, csapatteljesítmény — valós időben, egy irányítópulton.',
+    'trust-line': '2600+ felhasználó · 100 000+ feldolgozott munkadarab · Globális SaaS, helyi támogatás',
+    'how-title': 'Hogyan működik a partnerség?',
+    'how-subtitle': 'Egyszerű modell, átlátható feltételek. Ön eladja és bevezetni az rendszert — mi a technikai hátteret, a marketing anyagokat biztosítjuk, és továbbítjuk az Ön régiójából beérkező megkereséseket.',
+    'step1-title': 'Keressen labort',
+    'step1-desc': 'Saját hálózata és kapcsolatai révén. Az Ön régiójából beérkező megkereséseket mi is közvetlenül Önhöz küldjük.',
+    'step2-title': 'Vezessen be rendszert',
+    'step2-desc': 'Ön a labor fő kapcsolattartója a bevezetés során. Mi végezzük a konfigurációt és a technikai képzést — Ön irányítja a labort a folyamaton át.',
+    'step3-title': 'Kereszen bevételből',
+    'step3-desc': 'Egyszeri implementációs díj laboronként + a labor havi előfizetésének 20%-a, amíg aktív ügyfél marad.',
+    'looking-title': 'Kiben gondolkodunk?',
+    'looking-subtitle': 'Nem szükséges fogtechnikai szakterület — de szükséges a helyes hozzáállás. Így működik a legjobban:',
+    'looking1-title': 'Értékesítés vagy implementáció',
+    'looking1-desc': 'Szoftvert ad el, ERP-t vezet be, vagy B2B tapasztalattal működtet tanácsadó céget.',
+    'looking2-title': 'Labor kapcsolatok',
+    'looking2-desc': 'Már ismer laborokat, vagy tudja, hogyan lehet őket megtalálni — szállítók, fogorvosi hálózatok vagy iparági kapcsolatok révén.',
+    'looking3-title': 'Regionális fókusz',
+    'looking3-desc': 'Az Ön régiójának fő kapcsolattartója szeretne lenni. Mi támogatjuk, de Ön vezeti a piacot.',
+    'looking4-title': 'Reális ütemterv',
+    'looking4-desc': 'Rész-idős partnerek működnek — teljes idő jobb. Az első hónap után valós erőfeszítést várunk.',
+    'revenue-title': 'Milyen bevételre számíthatsz?',
+    'revenue-subtitle': 'A jutalékszerkezet egyszerű. Így néz ki:',
+    'revenue-how-h4': 'Hogyan működik',
+    'revenue-how-li1': 'Egyszeri implementációs díj: Ön szabja meg az árat, Ön számlázza a labort',
+    'revenue-how-li2': 'Visszatérő jutalék: a labor havi előfizetésének 20%-a (amíg nálunk marad)',
+    'revenue-how-li3': 'Prémium modulok, extra felhasználók, kiegészítések: mindez beleszámít a jutalék alapjába',
+    'revenue-how-li4': 'Havi rendezés; mi kiküldünk egy kimutatást, Ön számlázol, fizetés 15 napon belül',
+    'revenue-how-note': 'Szerződés felmondása? A hozott ügyfelek jutalékát 12 hónapon át továbbra is megkapja.',
+    'revenue-scenarios': 'Példa forgatókönyvek',
+    'scenario1-h4': '1. forgatókönyv: Kicsi kezdet',
+    'scenario1-sub': 'Az első 3 hónapban 2 labort hoz (reális).',
+    'revenue-month': '1. hónap',
+    'revenue-month3': '3. hónap',
+    'revenue-first-month': 'Éppen kezdés',
+    'revenue-first-labs': '2 labor × 400 EUR implementáció',
+    'revenue-recurring': 'Visszatérő (4. hónaptól)',
+    'revenue-recurring-detail': '2 × 1000 EUR/hó előfizetés 20%-a',
+    'scenario2-h4': '2. forgatókönyv: Növekvő partnerség',
+    'scenario2-sub': '6 hónapon keresztül havonta 1 labort hoz. Az előfizetések nőnek, ahogy bővülnek.',
+    'revenue-total-impl': 'Összes implementációs díj',
+    'revenue-6-labs': '6 labor × 400 EUR',
+    'revenue-avg-sub': 'Átlag 1000 EUR/hó laboronként (nőnek velük)',
+    'revenue-annual': 'Éves visszatérő',
+    'revenue-passive': '+ implementációs díjak',
+    'revenue-disclaimer': 'Ezek csak szemléltető példák, nem garantáltak. A valódi bevétel attól függ, hány labort hoz és meddig maradnak. A partnerek jutaléka a régió, a piaci érés és az üzlet szerkezete alapján változik.',
+    'support-title': 'Amivel támogatunk',
+    'support1-title': 'Képzés',
+    'support1-desc': 'Termékképzés + értékesítési módszer. Heti konzultáció az első hónapban.',
+    'support2-title': 'Demo rendszer',
+    'support2-desc': 'Saját bemutató a SmileStone bemutatásához — bármilyen nyelven, amely az ügyfélnek szükséges.',
+    'support3-title': 'Értékesítési anyagok',
+    'support3-desc': 'Bemutató deck, egy oldalas kiadvány, árajánlat sablon — kész és honosítható.',
+    'support4-title': 'Regionális megkeresések',
+    'support4-desc': 'Az Ön régiójából beérkező megkereséseket közvetlenül Önhöz továbbítjuk.',
+    'support5-title': 'AI eszközök',
+    'support5-desc': 'Dolgozunk egy AI chatboton, ami azonnali supportot ad, és egy interaktív onboarding asszisztensen, ami lépésről lépésre végigvezeti az új laborokat a beállításon.',
+    'support6-title': 'Háttámogatás',
+    'support6-desc': 'Dedikált csatorna, rendszeres szinkronok, technikai támogatás. Nem vagy egyedül.',
+    'resource1': '🌐 smilestone.hu',
+    'resource2': '▶️ YouTube Csatorna',
+    'agreement-title': 'Partneri megállapodás — Vázlat',
+    'agreement-subtitle': 'Ez egy egyszerűsített összefoglaló, nem végleges jogi dokumentum. A pontos feltételeket személyesen tárgyaljuk.',
+    'agreement-header': 'PARTNERI MEGÁLLAPODÁS',
+    'agreement-draft': 'VÁZLAT',
+    'agreement-s1-title': '1. Partnerség tárgya és köre',
+    'agreement-s1-li1': 'Partner jogosult a SmileStone nevében értékesítési, marketing és implementációs tevékenységeket végezni 5–50 fős KKV szegmensben',
+    'agreement-s1-li2': 'Partner a SmileStone logót, márkáját és marketing anyagait használhatja a márkavédelmi irányelvek szerint',
+    'agreement-s1-li3': 'Partner nem jogosult szerződéseket aláírni a SmileStone nevében, fizetési feltételeket módosítani vagy fejlesztési ígéreteket tenni',
+    'agreement-s2-title': '2. Ügyfél-kezelés és regionális együttműködés',
+    'agreement-s2-li1': 'Minden lehetséges ügyfelet be kell jelenteni a SmileStone-nak 24 órán belül',
+    'agreement-s2-li2': 'Érvényes regisztráció után az ügyfél 90 napig a Partner tulajdonában van',
+    'agreement-s2-li3': 'A SmileStone továbbíthat beérkező ügyféleket a régióból — ezek teljes jutalékjogokkal járnak',
+    'agreement-s2-li4': 'Nem-kizárás: egyik fél sem kerüli meg a másik jutalékjogait',
+    'agreement-s3-title': '3. Implementáció és díjszabás',
+    'agreement-s3-li1': 'Partner szabadon határozza meg az implementáció/szakszolgáltatás árát, és közvetlenül számlázza az ügyfelet',
+    'agreement-s3-li2': 'Az ügyfél közvetlenül a SmileStone-nak fizeti az előfizetési díjat',
+    'agreement-s4-title': '4. Jutalék és rendezés',
+    'agreement-s4-li1': 'Havi jutalék: az ügyfél nettó előfizetési díjának 20%-a, amíg aktív előfizetője marad',
+    'agreement-s4-li2': 'Prémium csomagok, extra modulok, további felhasználók — mindez beleszámít a jutalék alapjába',
+    'agreement-s4-li3': 'Rendezés: SmileStone kimutatást küld, Partner számlázol, fizetés 15 napon belül',
+    'agreement-s4-li4': 'Szerződés felmondása után a Partner az elózött ügyfelek jutalékát 12 hónapon át kapta továbbra is',
+    'agreement-s5-title': '5. Támogatás és technikai együttműködés',
+    'agreement-s5-li1': 'Partner 1. szintű támogatást nyújt (felhasználói kérdések, alapszintű hibakeresés)',
+    'agreement-s5-li2': 'SmileStone 2. szintű támogatást nyújt (hibák, konfiguráció, teljesítménnyel kapcsolatos problémák)',
+    'agreement-s5-li3': '2. szintű eszkalálás: válasz 4 órán belül munkaidőben',
+    'agreement-s6-title': '6. Bevezetés és képzés',
+    'agreement-s6-li1': 'SmileStone kezeli a termék konfigurációját és testreszabását',
+    'agreement-s6-li2': 'Partner felelős a napi labor képzésért és útmutatásért',
+    'agreement-s6-li3': 'Negyedéves online képzés, folyamatosan frissített tudásbázis',
+    'agreement-s7-title': '7. Márkahasznosítás és marketing',
+    'agreement-s7-li1': 'Partner a SmileStone által biztosított anyagokat használhatja; egyéni anyagokhoz előzetes jóváhagyás szükséges',
+    'agreement-s7-li2': 'SmileStone felsorolhatja a Partnert referenciként',
+    'agreement-s8-title': '8. Adatvédelem és GDPR',
+    'agreement-s8-li1': 'Mindkét fél betartja a GDPR és a helyi adatvédelmi szabályozást',
+    'agreement-s8-li2': 'Személyes adatok csak a szerződés teljesítéséhez szükséges mértékben dolgozhatók fel',
+    'agreement-s9-title': '9. Felelősség és kártérítés',
+    'agreement-s9-li1': 'SmileStone felelős a szoftver elérhetőségéért és hibajavításokért',
+    'agreement-s9-li2': 'Partner felelős saját értékesítési ígéreteinek és szolgáltatásainak jogszerűségéért',
+    'agreement-s9-li3': 'Felelősség korlátja: maximum 12 havi jutalék',
+    'agreement-s10-title': '10. Szerződés felmondása',
+    'agreement-s10-li1': 'Határozatlan időtartam, bármelyik fél 30 napos felmondási idővel mondhatja fel',
+    'agreement-s10-li2': 'Azonnali felmondás anyagi szerződésszegés, fizetésképtelenség vagy jogellenes tevékenység esetén',
+    'agreement-s10-li3': 'Felmondás után ezek maradnak érvényben: jutalékjogok, titoktartás, adatvédelem',
+    'agreement-s11-title': '11. Egyéb feltételek',
+    'agreement-s11-li1': 'Titoktartás: szerződés és üzleti információkat bizalmasan kell kezelni',
+    'agreement-s11-li2': 'Nincs kizárólagosság — több partner párhuzamosan működhet',
+    'agreement-s11-li3': 'Alkalmazandó jog: magyar jog, viták: Pesti Ítélőtábla',
+    'agreement-warning': '⚠️ Ez egy tájékoztató vázlat. A végleges szerződést jogi tanácsadó készíti, a részleteket személyesen tárgyaljuk az alkalmazás után.',
+    'form-title': 'Érdekel? Mesélj magadról',
+    'form-subtitle': 'Nem kötelező. Töltsd ki, mi pedig felvesszük veled a kapcsolatot és megbeszéljük a részleteket.',
+    'form-name-label': 'Mi a neved?',
+    'form-name-placeholder': 'Teljes név',
+    'form-email-label': 'E-mail cím',
+    'form-email-placeholder': 'example@email.com',
+    'form-phone-label': 'Telefonszám',
+    'form-phone-placeholder': 'Opcionális, de felgyorsítja a folyamatot',
+    'form-about-label': 'Mesélj magadról kicsit',
+    'form-about-placeholder': 'Mit csinálsz jelenleg? Ha cég, milyen implementációs/értékesítési tapasztalatod van?',
+    'form-network-label': 'Van-e kapcsolatod fogtechnikai laborokkal?',
+    'form-select-choose': 'Válassz',
+    'form-network-opt1': 'Igen, többel dolgozom',
+    'form-network-opt2': 'Igen, ismerek néhányat',
+    'form-network-opt3': 'Nem, de tudom, hogyan lehet őket elérni',
+    'form-network-opt4': 'Nem nagyon',
+    'form-region-label': 'Melyik régióban dolgoznál?',
+    'form-region-hungary': 'Magyarország',
+    'form-region-romania': 'Románia',
+    'form-region-slovakia': 'Szlovákia',
+    'form-region-poland': 'Lengyelország',
+    'form-region-cz': 'Cseh Köztársaság',
+    'form-region-dach': 'DACH',
+    'form-region-benelux': 'Benelux',
+    'form-region-sa': 'Dél-Ázsia',
+    'form-region-other': 'Más régió',
+    'form-time-label': 'Heti mennyi időt tudsz erre szánni?',
+    'form-time-opt1': 'Teljes idő (napi)',
+    'form-time-opt2': '10–20 óra/hét',
+    'form-time-opt3': 'Néhány óra/hét',
+    'form-time-opt4': 'Még nem tudom',
+    'form-b2b-label': 'Van-e ERP/szoftver implementációs vagy B2B értékesítési tapasztalatod?',
+    'form-b2b-opt1': 'Igen, aktívan csinálom (cégenként vagy szabadúszóként)',
+    'form-b2b-opt2': 'Igen, korábban',
+    'form-b2b-opt3': 'Nem, de érdekel',
+    'form-b2b-opt4': 'Nem',
+    'form-motivation-label': 'Mi érdekelt meg a SmileStone-ban?',
+    'form-motivation-placeholder': 'Vagy bármi kérdésed',
+    'form-questions-label': 'Van még kérdésed?',
+    'form-questions-placeholder': 'Bármi, ami nem világos, vagy amit tudni szeretnél a partnerségről',
+    'form-submit': 'Jelentkezés →',
+    'form-error-required': 'Kérjük, töltsd ki',
+    'form-error-regions': 'Válassz legalább egyet',
+    'form-note': 'Nem munkaállomás interjú — csak azt szeretnénk tudni, kivel beszélgetünk. Utána személyesen tárgyalunk.',
+    'success-title': 'Köszönjük!',
+    'success-message': 'Hamarosan felvesszük veled a kapcsolatot — általában 1-2 munkanap múlva.',
+    'success-link1': 'Többet tudj meg a rendszerről → smilestone.hu',
+    'success-link2': 'YouTube csatornánk →',
+    'footer-site': 'smilestone.hu',
+    'footer-youtube': '▶️ YouTube',
+    'footer-tagline': 'Globális fogtechnikai ERP',
+    'footer-copyright': 'SmileStone © 2026 · Ez az oldal béta verzió.',
+    'floating-cta': 'Jelentkezés →',
+  }
+};
+
+function setLanguage(lang) {
+  currentLang = lang;
+
+  // Update active button styling
+  document.getElementById('langEnBtn').classList.toggle('lang-active', lang === 'en');
+  document.getElementById('langHuBtn').classList.toggle('lang-active', lang === 'hu');
+
+  // Update all text elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[lang][key] || '';
+  });
+
+  // Update HTML elements (for line breaks)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = translations[lang][key] || '';
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = translations[lang][key] || '';
+  });
+
+  // Update select options
+  document.querySelectorAll('select[data-i18n-select]').forEach(select => {
+    Array.from(select.options).forEach((option, idx) => {
+      const optKey = option.getAttribute('data-i18n-opt');
+      if (optKey) {
+        option.textContent = translations[lang][optKey] || option.textContent;
+      }
+    });
+  });
+
+  // Update checkbox labels (region checkboxes)
+  document.querySelectorAll('[data-i18n-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-label');
+    const span = el.querySelector('span[data-i18n]');
+    if (span) {
+      span.textContent = translations[lang][span.getAttribute('data-i18n')] || '';
+    }
+  });
+}
+
+// Floating CTA intersection observer
 let heroVis=true,formVis=false;
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.target.id==='hero')heroVis=e.isIntersecting;
-    if(e.target.id==='jelentkezes')formVis=e.isIntersecting;
+    if(e.target.id==='apply')formVis=e.isIntersecting;
   });
   const f=document.getElementById('floatingCta');
   if(window.innerWidth>768){f.style.display='none';return}
   f.style.display=(!heroVis&&!formVis)?'block':'none';
 },{threshold:0.1});
 io.observe(document.getElementById('hero'));
-io.observe(document.getElementById('jelentkezes'));
+io.observe(document.getElementById('apply'));
 
+// Form submission
 document.getElementById('partnerForm').addEventListener('submit',function(e){
   e.preventDefault();
   let v=true;
@@ -568,11 +970,13 @@ document.getElementById('partnerForm').addEventListener('submit',function(e){
   document.querySelector('.form-note').style.display='none';
   const s=document.getElementById('successScreen');
   s.style.display='block';
-  document.getElementById('successName').textContent='Köszi, '+d.name+'!';
+  document.getElementById('successName').textContent='Thanks, '+d.name+'!';
   // Background: send to API for AI analysis + email notification
   const API_URL='https://smilestone-partner-api.vercel.app/api/partner-apply';
   fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(r=>{if(!r.ok)console.error('API error:',r.status)}).catch(err=>console.error('API call failed:',err));
 });
+
+// Clear error on input
 document.querySelectorAll('input,textarea,select').forEach(el=>{
   el.addEventListener('input',()=>{
     el.classList.remove('field-error');

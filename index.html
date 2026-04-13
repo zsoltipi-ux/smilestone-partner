@@ -22,7 +22,7 @@ a:hover{text-decoration:underline}
 .beta-banner{background:var(--yellow);text-align:center;padding:10px 16px;font-size:13px;color:#92400E;position:sticky;top:0;z-index:100}
 .site-header{background:#fff;border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:38px;z-index:99}
 .site-header .container{display:flex;align-items:center;justify-content:space-between}
-.site-header img{height:32px}
+.site-header img{height:32px;max-width:160px;object-fit:contain}
 .header-links{display:flex;gap:16px;font-size:13px;align-items:center}
 .header-links a{color:var(--gray);display:inline-flex;align-items:center;gap:5px}
 .header-links a img.nav-icon{height:14px;width:14px;object-fit:contain;border-radius:2px;flex-shrink:0}
@@ -151,6 +151,34 @@ footer .footer-tagline{font-size:12px;letter-spacing:.5px;text-transform:upperca
 .floating-cta{position:fixed;bottom:24px;right:24px;z-index:90;display:none}
 .floating-cta .cta-btn{box-shadow:0 4px 20px rgba(0,186,239,.4);padding:12px 24px;font-size:14px}
 @media(min-width:769px){.floating-cta{display:none!important}}
+
+/* ── Global image overflow fix ── */
+img{max-width:100%;height:auto}
+body{overflow-x:hidden}
+
+/* ── Mobile ── */
+@media(max-width:600px){
+  section{padding:48px 0}
+  h2{font-size:22px}
+  h3{font-size:16px}
+  .hero{padding:52px 0 36px}
+  .hero .subtitle{font-size:15px}
+  .site-header img{max-width:130px;height:auto}
+  .header-links{gap:8px}
+  .header-links a:not(.apply-link){display:none}
+  .lang-btn{padding:2px 5px}
+  .scenario-box{padding:16px}
+  .contract-box{padding:16px}
+  .pricing-explainer{padding:16px}
+  .highlight-box{padding:14px 16px;font-size:14px}
+  .revenue-card.big .amount{font-size:22px}
+  .resource-links{flex-direction:column}
+  .resource-link{justify-content:center}
+  .floating-cta{bottom:16px;right:16px}
+  .checkbox-group{gap:6px}
+  .checkbox-group label{font-size:12px;padding:4px 10px}
+  .stats{gap:20px}
+}
 </style>
 </head>
 <body>
